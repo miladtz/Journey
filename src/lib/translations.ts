@@ -123,6 +123,11 @@ const en = {
       subtitle: "The iPhone 17 Pro Max is in stock and ready to ship.",
       cta: "Shop now",
     },
+    allProducts: {
+      eyebrow: "Full catalog",
+      title: "Everything in stock",
+      subtitle: "Every verified product Journey carries, right now.",
+    },
   },
   howItWorksPage: {
     hero: {
@@ -188,14 +193,6 @@ const en = {
     notifyTitle: "Want to know when it launches?",
     notifyDesc: "Leave your email and we'll let you know the moment this category goes live.",
     notifySuccess: "You're on the list — we'll be in touch.",
-    items: [
-      { key: "smartphones", name: "Smartphones", desc: "Flagship phones, verified and in stock.", live: true },
-      { key: "laptops", name: "Laptops", desc: "Pro-grade laptops for work and creative work.", live: false },
-      { key: "audio", name: "Audio", desc: "Headphones and speakers worth the hype.", live: false },
-      { key: "wearables", name: "Wearables", desc: "Watches and bands that keep up with you.", live: false },
-      { key: "tablets", name: "Tablets", desc: "Tablets for work, study, and everything between.", live: false },
-      { key: "accessories", name: "Accessories", desc: "Cases, chargers, and the small things that matter.", live: false },
-    ],
   },
   about: {
     hero: {
@@ -309,6 +306,10 @@ const en = {
     backHome: "Back to home",
   },
   admin: {
+    nav: {
+      products: "Products",
+      categories: "Categories",
+    },
     login: {
       title: "Admin sign in",
       subtitle: "Manage the Journey product catalog.",
@@ -354,6 +355,11 @@ const en = {
       colorHex: "Color swatch (hex, optional)",
       addImage: "Add image",
       removeImage: "Remove image",
+      dropImage: "Drag and drop a picture here, or click to choose a file",
+      dropImageReplace: "Drag a new picture here, or click to replace",
+      uploading: "Uploading…",
+      uploadError: "Could not upload image",
+      orPasteUrl: "or paste an image link instead",
       specs: "Specifications",
       specLabelEn: "Label (English)",
       specLabelFa: "Label (Persian)",
@@ -364,6 +370,36 @@ const en = {
       save: "Save product",
       saving: "Saving…",
       cancel: "Cancel",
+    },
+    categories: {
+      title: "Categories",
+      subtitle: "Add, edit, and remove the categories shoppers browse.",
+      addCategory: "Add category",
+      empty: "No categories yet. Add your first one.",
+      edit: "Edit",
+      delete: "Delete",
+      deleteConfirm: "Delete this category? This can't be undone.",
+      colName: "Name",
+      colSlug: "Slug",
+      colProducts: "Products",
+      colStatus: "Status",
+      colActions: "Actions",
+      live: "Live",
+      comingSoon: "Coming soon",
+    },
+    categoryForm: {
+      titleNew: "Add a category",
+      titleEdit: "Edit category",
+      nameEn: "Name (English)",
+      nameFa: "Name (Persian)",
+      slug: "URL slug",
+      descriptionEn: "Description (English)",
+      descriptionFa: "Description (Persian)",
+      icon: "Icon",
+      save: "Save category",
+      saving: "Saving…",
+      cancel: "Cancel",
+      deleteBlocked: "This category still has products in it. Move or delete them first.",
     },
   },
   footer: {
@@ -508,6 +544,11 @@ const fa = {
       subtitle: "آیفون 17 پرو مکس موجود است و آماده ارسال.",
       cta: "همین حالا بخرید",
     },
+    allProducts: {
+      eyebrow: "همه محصولات",
+      title: "هر چیزی که موجود است",
+      subtitle: "تمام محصولات بررسی‌شده جورنی، همین حالا.",
+    },
   },
   howItWorksPage: {
     hero: {
@@ -573,14 +614,6 @@ const fa = {
     notifyTitle: "می‌خواهید زمان راه‌اندازی را بدانید؟",
     notifyDesc: "ایمیل خود را وارد کنید تا به‌محض فعال‌شدن این دسته‌بندی به شما اطلاع دهیم.",
     notifySuccess: "شما در لیست قرار گرفتید؛ به‌زودی با شما در تماس خواهیم بود.",
-    items: [
-      { key: "smartphones", name: "گوشی‌های هوشمند", desc: "گوشی‌های پرچمدار، تأییدشده و موجود در انبار.", live: true },
-      { key: "laptops", name: "لپ‌تاپ", desc: "لپ‌تاپ‌های حرفه‌ای برای کار و پروژه‌های خلاقانه.", live: false },
-      { key: "audio", name: "صوتی", desc: "هدفون و اسپیکرهایی که ارزش هیاهویشان را دارند.", live: false },
-      { key: "wearables", name: "پوشیدنی‌ها", desc: "ساعت و بندهایی که همراه شما هستند.", live: false },
-      { key: "tablets", name: "تبلت", desc: "تبلت برای کار، تحصیل و هر چیزی بین این دو.", live: false },
-      { key: "accessories", name: "لوازم جانبی", desc: "قاب، شارژر و چیزهای کوچکی که اهمیت دارند.", live: false },
-    ],
   },
   about: {
     hero: {
@@ -694,6 +727,10 @@ const fa = {
     backHome: "بازگشت به خانه",
   },
   admin: {
+    nav: {
+      products: "محصولات",
+      categories: "دسته‌بندی‌ها",
+    },
     login: {
       title: "ورود مدیر",
       subtitle: "مدیریت فهرست محصولات جورنی.",
@@ -739,6 +776,11 @@ const fa = {
       colorHex: "کد رنگ (اختیاری)",
       addImage: "افزودن تصویر",
       removeImage: "حذف تصویر",
+      dropImage: "تصویر را اینجا بکشید و رها کنید، یا برای انتخاب فایل کلیک کنید",
+      dropImageReplace: "برای جایگزینی، تصویر جدید را بکشید و رها کنید یا کلیک کنید",
+      uploading: "در حال بارگذاری…",
+      uploadError: "بارگذاری تصویر انجام نشد",
+      orPasteUrl: "یا آدرس تصویر را وارد کنید",
       specs: "مشخصات فنی",
       specLabelEn: "عنوان (انگلیسی)",
       specLabelFa: "عنوان (فارسی)",
@@ -749,6 +791,36 @@ const fa = {
       save: "ذخیره محصول",
       saving: "در حال ذخیره…",
       cancel: "انصراف",
+    },
+    categories: {
+      title: "دسته‌بندی‌ها",
+      subtitle: "افزودن، ویرایش و حذف دسته‌بندی‌های قابل مشاهده برای خریداران.",
+      addCategory: "افزودن دسته‌بندی",
+      empty: "هنوز دسته‌بندی‌ای وجود ندارد. اولین مورد را اضافه کنید.",
+      edit: "ویرایش",
+      delete: "حذف",
+      deleteConfirm: "این دسته‌بندی حذف شود؟ این عملیات قابل بازگشت نیست.",
+      colName: "نام",
+      colSlug: "شناسه (slug)",
+      colProducts: "محصولات",
+      colStatus: "وضعیت",
+      colActions: "عملیات",
+      live: "فعال",
+      comingSoon: "به‌زودی",
+    },
+    categoryForm: {
+      titleNew: "افزودن دسته‌بندی",
+      titleEdit: "ویرایش دسته‌بندی",
+      nameEn: "نام (انگلیسی)",
+      nameFa: "نام (فارسی)",
+      slug: "شناسه آدرس (slug)",
+      descriptionEn: "توضیحات (انگلیسی)",
+      descriptionFa: "توضیحات (فارسی)",
+      icon: "آیکون",
+      save: "ذخیره دسته‌بندی",
+      saving: "در حال ذخیره…",
+      cancel: "انصراف",
+      deleteBlocked: "این دسته‌بندی هنوز محصول دارد. ابتدا محصولات آن را جابه‌جا یا حذف کنید.",
     },
   },
   footer: {

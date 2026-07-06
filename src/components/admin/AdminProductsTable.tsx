@@ -1,8 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
-import { Pencil, Trash2, Plus, LogOut } from "lucide-react";
+import { Pencil, Trash2, Plus } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -28,20 +27,10 @@ export function AdminProductsTable({ products }: { products: ProductWithRelation
           <h1 className="text-2xl font-semibold text-foreground">{d.title}</h1>
           <p className="mt-1 text-sm text-muted">{d.subtitle}</p>
         </div>
-        <div className="flex items-center gap-3">
-          <Button href="/admin/products/new" size="sm">
-            <Plus className="h-4 w-4" />
-            {d.addProduct}
-          </Button>
-          <button
-            type="button"
-            onClick={() => signOut({ callbackUrl: "/admin/login" })}
-            className="flex items-center gap-1.5 rounded-full border border-border px-3.5 py-1.5 text-sm text-muted hover:text-foreground"
-          >
-            <LogOut className="h-4 w-4" />
-            {t.nav.logout}
-          </button>
-        </div>
+        <Button href="/admin/products/new" size="sm">
+          <Plus className="h-4 w-4" />
+          {d.addProduct}
+        </Button>
       </div>
 
       <div className="mt-8 overflow-x-auto rounded-2xl border border-border bg-surface">

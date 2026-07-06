@@ -1,36 +1,39 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Smartphone, Laptop, Headphones, Watch, Tablet, Cable, Mail, Check } from "lucide-react";
+import { Smartphone, Laptop, Headphones, Watch, Tablet, Cable, Package, Mail, Check } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import type { ProductWithRelations } from "@/types";
 
-const icons: Record<string, typeof Smartphone> = {
-  smartphones: Smartphone,
-  laptops: Laptop,
-  audio: Headphones,
-  wearables: Watch,
-  tablets: Tablet,
-  accessories: Cable,
+export const CATEGORY_ICONS: Record<string, typeof Smartphone> = {
+  Smartphone,
+  Laptop,
+  Headphones,
+  Watch,
+  Tablet,
+  Cable,
+  Package,
 };
 
 export function CategoryCard({
   categoryKey,
+  icon,
   name,
   desc,
   live,
   product,
 }: {
   categoryKey: string;
+  icon: string;
   name: string;
   desc: string;
   live: boolean;
   product?: ProductWithRelations | null;
 }) {
   const { t, locale } = useLanguage();
-  const Icon = icons[categoryKey] ?? Smartphone;
+  const Icon = CATEGORY_ICONS[icon] ?? Package;
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
 

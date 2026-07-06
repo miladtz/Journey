@@ -35,3 +35,17 @@ export const productInputSchema = z.object({
 });
 
 export type ProductInput = z.infer<typeof productInputSchema>;
+
+export const categoryInputSchema = z.object({
+  slug: z
+    .string()
+    .min(1)
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Use lowercase letters, numbers, and hyphens only"),
+  nameEn: z.string().min(1),
+  nameFa: z.string().min(1),
+  descEn: z.string().default(""),
+  descFa: z.string().default(""),
+  icon: z.string().min(1).default("Package"),
+});
+
+export type CategoryInput = z.infer<typeof categoryInputSchema>;

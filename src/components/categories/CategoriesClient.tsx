@@ -2,10 +2,17 @@
 
 import { useLanguage } from "@/context/LanguageContext";
 import { CategoryCard } from "@/components/categories/CategoryCard";
+import type { Category } from "@/generated/prisma/client";
 import type { ProductWithRelations } from "@/types";
 
-export function CategoriesClient({ products }: { products: ProductWithRelations[] }) {
-  const { t } = useLanguage();
+export function CategoriesClient({
+  categories,
+  products,
+}: {
+  categories: Category[];
+  products: ProductWithRelations[];
+}) {
+  const { t, locale } = useLanguage();
   const { title, subtitle } = t.categories.hero;
 
   return (
@@ -16,18 +23,18 @@ export function CategoriesClient({ products }: { products: ProductWithRelations[
       </div>
 
       <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {t.categories.items.map((item) => {
-          const categoryProduct = item.live
-            ? products.find((product) => product.category === item.key)
-            : null;
+        {categories.map((category) => {
+          const categoryProducts = products.filter((product) => product.category === category.slug);
+          const live = categoryProducts.length > 0;
           return (
             <CategoryCard
-              key={item.key}
-              categoryKey={item.key}
-              name={item.name}
-              desc={item.desc}
-              live={item.live}
-              product={categoryProduct}
+              key={category.slug}
+              categoryKey={category.slug}
+              icon={category.icon}
+              name={locale === "fa" ? category.nameFa : category.nameEn}
+              desc={locale === "fa" ? category.descFa : category.descEn}
+              live={live}
+              product={categoryProducts[0] ?? null}
             />
           );
         })}

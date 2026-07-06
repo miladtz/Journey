@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type DragEvent, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { Plus, Trash2 } from "lucide-react";
+import { ImageUp, Plus, Trash2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { FormInput, FormTextarea } from "@/components/ui/FormInput";
 import { Button } from "@/components/ui/Button";
+import type { Category } from "@/generated/prisma/client";
 import type { ProductWithRelations } from "@/types";
 
 type ImageRow = { url: string; alt: string; colorName: string; colorHex: string };
@@ -14,8 +15,112 @@ type SpecRow = { labelEn: string; labelFa: string; valueEn: string; valueFa: str
 const emptyImage: ImageRow = { url: "", alt: "", colorName: "", colorHex: "" };
 const emptySpec: SpecRow = { labelEn: "", labelFa: "", valueEn: "", valueFa: "" };
 
-export function ProductForm({ product }: { product?: ProductWithRelations }) {
-  const { t } = useLanguage();
+async function uploadImageFile(file: File): Promise<string> {
+  const body = new FormData();
+  body.set("file", file);
+  const res = await fetch("/api/admin/upload", { method: "POST", body });
+  const data = await res.json().catch(() => null);
+  if (!res.ok) {
+    throw new Error(typeof data?.error === "string" ? data.error : "Upload failed");
+  }
+  return data.url as string;
+}
+
+function ImageDropzone({
+  image,
+  onUrlChange,
+  onFileUploaded,
+  labels,
+}: {
+  image: ImageRow;
+  onUrlChange: (url: string) => void;
+  onFileUploaded: (url: string) => void;
+  labels: { drop: string; dropReplace: string; uploading: string; uploadError: string; orPasteUrl: string };
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleFile(file: File | undefined) {
+    if (!file) return;
+    setIsUploading(true);
+    setError(null);
+    try {
+      const url = await uploadImageFile(file);
+      onFileUploaded(url);
+    } catch {
+      setError(labels.uploadError);
+    } finally {
+      setIsUploading(false);
+    }
+  }
+
+  function handleDrop(event: DragEvent<HTMLDivElement>) {
+    event.preventDefault();
+    setIsDragging(false);
+    handleFile(event.dataTransfer.files?.[0]);
+  }
+
+  return (
+    <div className="sm:col-span-2">
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={() => inputRef.current?.click()}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") inputRef.current?.click();
+        }}
+        onDragOver={(event) => {
+          event.preventDefault();
+          setIsDragging(true);
+        }}
+        onDragLeave={() => setIsDragging(false)}
+        onDrop={handleDrop}
+        className={`flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed px-4 py-6 text-center transition-colors ${
+          isDragging ? "border-accent bg-accent/5" : "border-border hover:border-accent/60"
+        }`}
+      >
+        {image.url ? (
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={image.url} alt="" className="h-28 w-auto rounded-md object-contain" />
+            <p className="text-xs text-muted">{labels.dropReplace}</p>
+          </>
+        ) : (
+          <>
+            <ImageUp className="h-7 w-7 text-muted" />
+            <p className="text-sm text-muted">{labels.drop}</p>
+          </>
+        )}
+        {isUploading ? <p className="text-xs text-accent">{labels.uploading}</p> : null}
+        {error ? <p className="text-xs text-red-500">{error}</p> : null}
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/jpeg,image/png,image/webp,image/gif"
+          className="hidden"
+          onChange={(event) => handleFile(event.target.files?.[0])}
+        />
+      </div>
+      <input
+        value={image.url}
+        onChange={(event) => onUrlChange(event.target.value)}
+        placeholder={labels.orPasteUrl}
+        className="mt-2 w-full rounded-lg border border-border bg-surface px-3 py-2 text-xs text-muted"
+      />
+    </div>
+  );
+}
+
+export function ProductForm({
+  product,
+  categories,
+}: {
+  product?: ProductWithRelations;
+  categories: Category[];
+}) {
+  const { t, locale } = useLanguage();
   const router = useRouter();
   const f = t.admin.form;
   const isEdit = Boolean(product);
@@ -110,7 +215,21 @@ export function ProductForm({ product }: { product?: ProductWithRelations }) {
           <FormInput label={f.nameEn} name="nameEn" defaultValue={product?.nameEn} required />
           <FormInput label={f.nameFa} name="nameFa" defaultValue={product?.nameFa} required dir="rtl" />
           <FormInput label={f.slug} name="slug" defaultValue={product?.slug} required />
-          <FormInput label={f.category} name="category" defaultValue={product?.category ?? "smartphones"} required />
+          <label className="block">
+            <span className="mb-1.5 block text-sm font-medium text-foreground">{f.category}</span>
+            <select
+              name="category"
+              defaultValue={product?.category ?? categories[0]?.slug ?? ""}
+              required
+              className="w-full rounded-xl border border-border bg-surface px-4 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent"
+            >
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.slug}>
+                  {locale === "fa" ? cat.nameFa : cat.nameEn}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2">
@@ -155,15 +274,21 @@ export function ProductForm({ product }: { product?: ProductWithRelations }) {
           <div className="mt-3 space-y-4">
             {images.map((image, index) => (
               <div key={index} className="grid gap-3 rounded-xl border border-border p-4 sm:grid-cols-2">
-                <input
-                  value={image.url}
-                  onChange={(event) =>
-                    setImages((rows) =>
-                      rows.map((row, i) => (i === index ? { ...row, url: event.target.value } : row))
-                    )
+                <ImageDropzone
+                  image={image}
+                  onUrlChange={(url) =>
+                    setImages((rows) => rows.map((row, i) => (i === index ? { ...row, url } : row)))
                   }
-                  placeholder={f.imageUrl}
-                  className="rounded-lg border border-border bg-surface px-3 py-2 text-sm sm:col-span-2"
+                  onFileUploaded={(url) =>
+                    setImages((rows) => rows.map((row, i) => (i === index ? { ...row, url } : row)))
+                  }
+                  labels={{
+                    drop: f.dropImage,
+                    dropReplace: f.dropImageReplace,
+                    uploading: f.uploading,
+                    uploadError: f.uploadError,
+                    orPasteUrl: f.orPasteUrl,
+                  }}
                 />
                 <input
                   value={image.alt}

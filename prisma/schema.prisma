@@ -69,6 +69,22 @@ model ProductSpec {
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
+// Admin-managed catalog categories. Product.category stays a plain slug
+// string (not a foreign key) to match how it was already stored there;
+// the admin product form's dropdown is what keeps the two in sync.
+model Category {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  nameEn    String
+  nameFa    String
+  descEn    String   @default("")
+  descFa    String   @default("")
+  icon      String   @default("Package")
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Cart {
   id        String     @id @default(cuid())
   sessionId String     @unique

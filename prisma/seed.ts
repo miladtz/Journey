@@ -21,6 +21,26 @@ async function seedAdmin() {
   console.log(`Admin user ready: ${ADMIN_EMAIL} / ${ADMIN_PASSWORD}`);
 }
 
+const CATEGORIES = [
+  { slug: "smartphones", nameEn: "Smartphones", nameFa: "گوشی‌های هوشمند", descEn: "Flagship phones, verified and in stock.", descFa: "گوشی‌های پرچمدار، بررسی‌شده و موجود در انبار.", icon: "Smartphone" },
+  { slug: "laptops", nameEn: "Laptops", nameFa: "لپ‌تاپ", descEn: "Pro-grade laptops for work and creative work.", descFa: "لپ‌تاپ‌های حرفه‌ای برای کار و امور خلاقانه.", icon: "Laptop" },
+  { slug: "audio", nameEn: "Audio", nameFa: "صوتی", descEn: "Headphones and speakers worth the hype.", descFa: "هدفون و اسپیکرهایی که ارزش هیاهویشان را دارند.", icon: "Headphones" },
+  { slug: "wearables", nameEn: "Wearables", nameFa: "پوشیدنی‌ها", descEn: "Watches and bands that keep up with you.", descFa: "ساعت‌ها و بندهایی که همراه شما پیش می‌روند.", icon: "Watch" },
+  { slug: "tablets", nameEn: "Tablets", nameFa: "تبلت", descEn: "Tablets for work, study, and everything between.", descFa: "تبلت برای کار، تحصیل و هر چیزی بین این دو.", icon: "Tablet" },
+  { slug: "accessories", nameEn: "Accessories", nameFa: "لوازم جانبی", descEn: "Cases, chargers, and the small things that matter.", descFa: "قاب، شارژر و چیزهای کوچکی که اهمیت دارند.", icon: "Cable" },
+];
+
+async function seedCategories() {
+  for (const [index, category] of CATEGORIES.entries()) {
+    await prisma.category.upsert({
+      where: { slug: category.slug },
+      update: {},
+      create: { ...category, order: index },
+    });
+  }
+  console.log(`Categories ready: ${CATEGORIES.map((c) => c.slug).join(", ")}`);
+}
+
 async function seedIphone() {
   const slug = "iphone-17-pro-max";
 
@@ -157,6 +177,7 @@ async function seedIphone() {
 
 async function main() {
   await seedAdmin();
+  await seedCategories();
   await seedIphone();
 }
 
