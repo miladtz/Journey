@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Search } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/Button";
 import type { ClientWithOrderCount } from "@/types";
@@ -40,6 +40,10 @@ export function AdminClientsTable({
           <h1 className="text-2xl font-semibold text-foreground">{c.title}</h1>
           <p className="mt-1 text-sm text-muted">{c.subtitle}</p>
         </div>
+        <Button href="/admin/clients/new" size="sm">
+          <Plus className="h-4 w-4" />
+          {c.addClient}
+        </Button>
       </div>
 
       <div className="relative mt-6 max-w-md">

@@ -61,7 +61,8 @@
       "Bash(grep -o \"ورود$\\\\|Sign in\")",
       "Bash(disown)",
       "Bash(echo \"launched pid $!\")",
-      "Bash(ps -p 420426 -o pid,cmd)"
+      "Bash(ps -p 420426 -o pid,cmd)",
+      "Bash(kill 420460 420438 420437)"
     ],
     "additionalDirectories": [
       "/mnt/e/AI/Journey/src/app/admin/clients"
