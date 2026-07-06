@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sS -o /dev/null -w \"css2 endpoint: %{http_code}\\\\n\" -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120 Safari/537.36\" \"https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap\" --max-time 15)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(npx next *)",
+      "Bash(env)",
+      "Bash(node -e \"require\\('dns'\\).lookup\\('fonts.gstatic.com', \\(err, addr\\) => console.log\\(err, addr\\)\\)\")",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(chromium-cli --help)",
+      "Bash(curl -sS -c /tmp/cookies.txt -b /tmp/cookies.txt -X PATCH http://localhost:3000/api/cart/cmr8iity0000179jk3688xlfh -H 'Content-Type: application/json' -d '{\"quantity\":5}' --max-time 20)",
+      "Bash(curl -sS -c /tmp/cookies.txt -b /tmp/cookies.txt -X DELETE http://localhost:3000/api/cart/cmr8iity0000179jk3688xlfh --max-time 20)",
+      "Bash(curl -sS -X POST http://localhost:3000/api/leads -H 'Content-Type: application/json' -d '{\"name\":\"Test User\",\"email\":\"test@example.com\",\"message\":\"Hello there\"}' --max-time 20)",
+      "Bash(curl -sS -X POST http://localhost:3000/api/category-interest -H 'Content-Type: application/json' -d '{\"category\":\"laptops\",\"email\":\"test@example.com\"}' --max-time 20)",
+      "Bash(curl -sS -c /tmp/admin_cookies.txt -b /tmp/admin_cookies.txt -o /tmp/admin.html -w 'HTTP %{http_code}\\\\n' http://localhost:3000/admin --max-time 20)",
+      "Bash(curl -sS -o /tmp/admin_noauth.html -w \"HTTP %{http_code}\\\\n\" http://localhost:3000/admin --max-time 20)",
+      "Bash(curl -sS -c /tmp/admin_cookies.txt -b /tmp/admin_cookies.txt -o /tmp/patch_resp.json -w 'HTTP %{http_code}\\\\n' -X PATCH http://localhost:3000/api/admin/products/cmr8imirc000479jk79tzf3sz -H 'Content-Type: application/json' -d '{ *)",
+      "Bash(curl -sS -c /tmp/admin_cookies.txt -b /tmp/admin_cookies.txt -o /tmp/del_resp.json -w 'HTTP %{http_code}\\\\n' -X DELETE http://localhost:3000/api/admin/products/cmr8imirc000479jk79tzf3sz --max-time 20)",
+      "Bash(curl -sS http://localhost:3000/products/test-widget -o /tmp/gone.html -w \"HTTP %{http_code}\\\\n\" --max-time 20)",
+      "Skill(artifact-design)",
+      "Skill(artifact-design:*)"
+    ]
+  }
+}

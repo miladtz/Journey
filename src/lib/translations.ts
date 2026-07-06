@@ -1,0 +1,763 @@
+// All user-facing copy lives here, in both languages. Components never
+// hardcode strings — they call `t.section.key` from LanguageContext.
+// `fa` is typed against `en`'s shape (via `satisfies`), so a missing or
+// mistyped Persian key fails the build instead of silently falling back.
+
+const en = {
+  meta: {
+    siteName: "Journey",
+    tagline: "Premium tech, curated and verified.",
+  },
+  nav: {
+    home: "Home",
+    howItWorks: "How It Works",
+    forBuyers: "For Buyers",
+    categories: "Categories",
+    about: "About",
+    pricing: "Pricing",
+    contact: "Contact",
+    cart: "Basket",
+    admin: "Admin",
+    login: "Sign in",
+    logout: "Sign out",
+    dashboard: "Dashboard",
+  },
+  common: {
+    addToBasket: "Add to basket",
+    buyNow: "Buy now",
+    outOfStock: "Out of stock",
+    inStock: "In stock",
+    currency: "$",
+    save: "Save",
+    cancel: "Cancel",
+    submit: "Submit",
+    sending: "Sending…",
+    sent: "Sent",
+    loading: "Loading…",
+    viewDetails: "View details",
+    learnMore: "Learn more",
+    requiredField: "This field is required",
+    invalidEmail: "Enter a valid email address",
+    quantity: "Quantity",
+    remove: "Remove",
+    subtotal: "Subtotal",
+    total: "Total",
+    back: "Back",
+    seeAll: "See all",
+    comingSoon: "Coming soon",
+    notifyMe: "Notify me",
+    emailPlaceholder: "you@example.com",
+    close: "Close",
+  },
+  home: {
+    hero: {
+      eyebrow: "Curated. Verified. Delivered.",
+      title: "The world's best tech, without the guesswork.",
+      subtitle:
+        "Journey hand-picks every product in its catalog, prices it honestly, and stands behind it from checkout to your doorstep.",
+      ctaPrimary: "Shop iPhone 17 Pro Max",
+      ctaSecondary: "See how it works",
+    },
+    problem: {
+      title: "Buying premium tech online is a gamble",
+      subtitle: "Marketplaces are flooded with resellers you've never heard of.",
+      points: [
+        {
+          title: "Counterfeit risk",
+          desc: "Grey-market sellers and lookalike listings make it hard to know what you'll actually receive.",
+        },
+        {
+          title: "Opaque pricing",
+          desc: "Hidden fees, surprise customs charges, and \"deals\" that don't add up at checkout.",
+        },
+        {
+          title: "No accountability",
+          desc: "When something goes wrong, third-party sellers vanish and support goes quiet.",
+        },
+      ],
+    },
+    solution: {
+      title: "Journey fixes that",
+      subtitle: "One catalog, one team, one standard.",
+      points: [
+        {
+          title: "Every listing verified",
+          desc: "Our team adds and checks every product ourselves — nothing is drop-shipped or reseller-sourced.",
+        },
+        {
+          title: "One transparent price",
+          desc: "The price you see includes everything. No last-step surprises.",
+        },
+        {
+          title: "Real support",
+          desc: "From your order confirmation to the delivery at your door, a real team is accountable for it.",
+        },
+      ],
+    },
+    howItWorks: {
+      title: "From browse to doorstep in 4 steps",
+      steps: [
+        { title: "Browse", desc: "Explore verified products by category." },
+        { title: "Add to basket", desc: "Pick your configuration and quantity." },
+        { title: "Checkout securely", desc: "Enter shipping details and confirm your order." },
+        { title: "Track & receive", desc: "We pack, dispatch, and follow up until it arrives." },
+      ],
+    },
+    trust: {
+      title: "Why buyers trust Journey",
+      items: [
+        { title: "Authenticity guarantee", desc: "Every unit is genuine, or your money back." },
+        { title: "Buyer protection", desc: "Your payment is only released once your order is confirmed." },
+        { title: "Secure payments", desc: "Bank-grade encryption on every transaction." },
+        { title: "Human support", desc: "A real person answers when you reach out." },
+      ],
+    },
+    stats: [
+      { value: "10,000+", label: "Orders delivered" },
+      { value: "4.9 / 5", label: "Average rating" },
+      { value: "48h", label: "Avg. dispatch time" },
+      { value: "100%", label: "Authenticity guarantee" },
+    ],
+    finalCta: {
+      title: "Ready to upgrade?",
+      subtitle: "The iPhone 17 Pro Max is in stock and ready to ship.",
+      cta: "Shop now",
+    },
+  },
+  howItWorksPage: {
+    hero: {
+      eyebrow: "How it works",
+      title: "How Journey works",
+      subtitle: "Nine steps stand between browsing and unboxing. Here's exactly what happens at each one.",
+    },
+    steps: [
+      { title: "Discover", desc: "Browse categories and featured products curated by our team." },
+      { title: "Compare specs", desc: "Every product page lists full specifications side by side with pricing — no digging through PDFs." },
+      { title: "Transparent pricing", desc: "The price shown is the price you pay. Shipping and any fees are itemized before you confirm." },
+      { title: "Add to basket", desc: "Choose your configuration (like color) and quantity, and it's saved to your basket instantly." },
+      { title: "Secure checkout", desc: "Enter your shipping details on an encrypted checkout page. No account required." },
+      { title: "Verification", desc: "Our team confirms stock and validates the order before payment is captured." },
+      { title: "Payment confirmation", desc: "Once verified, your payment is confirmed and your order is locked in." },
+      { title: "Dispatch & tracking", desc: "Your order is packed, dispatched, and you get a tracking link the moment it ships." },
+      { title: "Delivery & support", desc: "Your product arrives, and our support team is available for anything after." },
+    ],
+  },
+  forBuyers: {
+    hero: {
+      eyebrow: "For buyers",
+      title: "Built for every kind of buyer",
+      subtitle: "Whether you're buying one phone or fifty, Journey is built around how you actually buy.",
+    },
+    segments: [
+      {
+        title: "Individual buyers",
+        desc: "Shopping for yourself or a gift, with zero guesswork.",
+        bullets: [
+          "Transparent, all-in pricing",
+          "Fast checkout, no account needed",
+          "Tracked shipping on every order",
+        ],
+      },
+      {
+        title: "Business & bulk buyers",
+        desc: "Equipping a team without the reseller markup.",
+        bullets: [
+          "Volume-friendly ordering",
+          "Dedicated order confirmations",
+          "Consolidated invoicing on request",
+        ],
+      },
+      {
+        title: "Retail partners",
+        desc: "Stocking your shelves with verified, authentic inventory.",
+        bullets: [
+          "Priority stock allocation",
+          "Direct line to our verification team",
+          "Reliable, repeatable lead times",
+        ],
+      },
+    ],
+  },
+  categories: {
+    hero: {
+      title: "Shop by category",
+      subtitle: "We add categories carefully — every one is fully verified before it goes live.",
+    },
+    liveLabel: "Available now",
+    comingSoonLabel: "Coming soon",
+    notifyTitle: "Want to know when it launches?",
+    notifyDesc: "Leave your email and we'll let you know the moment this category goes live.",
+    notifySuccess: "You're on the list — we'll be in touch.",
+    items: [
+      { key: "smartphones", name: "Smartphones", desc: "Flagship phones, verified and in stock.", live: true },
+      { key: "laptops", name: "Laptops", desc: "Pro-grade laptops for work and creative work.", live: false },
+      { key: "audio", name: "Audio", desc: "Headphones and speakers worth the hype.", live: false },
+      { key: "wearables", name: "Wearables", desc: "Watches and bands that keep up with you.", live: false },
+      { key: "tablets", name: "Tablets", desc: "Tablets for work, study, and everything between.", live: false },
+      { key: "accessories", name: "Accessories", desc: "Cases, chargers, and the small things that matter.", live: false },
+    ],
+  },
+  about: {
+    hero: {
+      eyebrow: "Our vision",
+      title: "Buying premium tech should feel as good as using it",
+      subtitle: "Journey exists because that experience was missing.",
+    },
+    missionTitle: "Our mission",
+    mission: [
+      "We started Journey because buying premium tech online had become a trust exercise — was the seller real, was the price real, would the product even show up.",
+      "So we built a catalog we control end to end. Every product is added, verified, and priced by our own team before a single buyer ever sees it.",
+      "We're starting with one product, done right: the iPhone 17 Pro Max. Every category we add afterward will meet that same bar.",
+    ],
+    values: [
+      { title: "Authenticity", desc: "If we wouldn't buy it ourselves, it doesn't go on the site." },
+      { title: "Transparency", desc: "One price, shown up front, that doesn't change at checkout." },
+      { title: "Care", desc: "We treat every order like it's going to someone we know." },
+    ],
+  },
+  pricing: {
+    hero: {
+      title: "Pricing & fees",
+      subtitle: "No commissions, no markups you can't see. Here's exactly how a price is built.",
+    },
+    sections: [
+      {
+        title: "Retail pricing",
+        desc: "We price every product at genuine retail — the same price you'd pay at an official store, sourced directly rather than through resellers.",
+      },
+      {
+        title: "Shipping",
+        desc: "Shipping is calculated at checkout based on your destination and shown before you confirm your order — never after.",
+      },
+      {
+        title: "Buyer protection",
+        desc: "Every order includes buyer protection at no extra cost: your payment is only captured once your order is verified.",
+      },
+    ],
+    faqTitle: "Frequently asked questions",
+    faq: [
+      {
+        q: "Are there hidden fees?",
+        a: "No. The price on the product page is the full price before shipping, and shipping is always shown before you confirm your order.",
+      },
+      {
+        q: "Do you charge a membership or commission fee?",
+        a: "No. Journey doesn't charge buyers a commission — you pay the product price plus shipping, nothing else.",
+      },
+      {
+        q: "What payment methods are supported?",
+        a: "Checkout supports major cards. Every transaction is encrypted and covered by our buyer protection.",
+      },
+    ],
+  },
+  contact: {
+    hero: {
+      title: "Get in touch",
+      subtitle: "Questions about an order, a product, or becoming a retail partner — we read every message.",
+    },
+    form: {
+      name: "Full name",
+      email: "Email address",
+      phone: "Phone number (optional)",
+      message: "Message",
+      submit: "Send message",
+    },
+    success: "Thanks — your message is in. We'll reply within one business day.",
+    error: "Something went wrong sending your message. Please try again.",
+  },
+  product: {
+    specsTitle: "Technical specifications",
+    chooseColor: "Color",
+    chooseStorage: "Storage",
+    quantityLabel: "Quantity",
+    addToBasket: "Add to basket",
+    addedToBasket: "Added to basket",
+    buyNow: "Buy now",
+    shippingNote: "Free tracked shipping, dispatched within 48 hours.",
+    stockLeftPrefix: "Only",
+    stockLeftSuffix: "left in stock",
+    outOfStock: "Currently out of stock",
+    guarantee: "Covered by Journey's authenticity guarantee",
+    relatedTitle: "Full specifications",
+  },
+  cart: {
+    title: "Your basket",
+    empty: "Your basket is empty.",
+    emptyCta: "Continue shopping",
+    product: "Product",
+    price: "Price",
+    quantity: "Quantity",
+    remove: "Remove",
+    subtotal: "Subtotal",
+    proceedToCheckout: "Proceed to checkout",
+    continueShopping: "Continue shopping",
+  },
+  checkout: {
+    title: "Checkout",
+    subtitle: "Enter your shipping details to complete your order.",
+    fields: {
+      name: "Full name",
+      email: "Email address",
+      address: "Shipping address",
+      city: "City",
+      postalCode: "Postal code",
+      country: "Country",
+    },
+    placeOrder: "Place order",
+    orderPlacedTitle: "Order confirmed",
+    orderPlacedDesc: "Thanks for your order! A confirmation has been recorded and our team will be in touch with tracking details.",
+    backHome: "Back to home",
+  },
+  admin: {
+    login: {
+      title: "Admin sign in",
+      subtitle: "Manage the Journey product catalog.",
+      email: "Email",
+      password: "Password",
+      submit: "Sign in",
+      invalidCredentials: "Incorrect email or password.",
+    },
+    dashboard: {
+      title: "Product catalog",
+      subtitle: "Add, edit, and remove products from the store.",
+      addProduct: "Add product",
+      empty: "No products yet. Add your first one.",
+      edit: "Edit",
+      delete: "Delete",
+      deleteConfirm: "Delete this product? This can't be undone.",
+      colStock: "Stock",
+      colPrice: "Price",
+      colStatus: "Status",
+      colActions: "Actions",
+      featured: "Featured",
+      hidden: "Hidden",
+    },
+    form: {
+      titleNew: "Add a product",
+      titleEdit: "Edit product",
+      nameEn: "Name (English)",
+      nameFa: "Name (Persian)",
+      slug: "URL slug",
+      taglineEn: "Tagline (English)",
+      taglineFa: "Tagline (Persian)",
+      descriptionEn: "Description (English)",
+      descriptionFa: "Description (Persian)",
+      price: "Price (USD)",
+      compareAtPrice: "Compare-at price (optional)",
+      category: "Category",
+      stock: "Stock quantity",
+      featured: "Featured on homepage",
+      images: "Gallery images",
+      imageUrl: "Image URL",
+      imageAlt: "Alt text",
+      colorName: "Color name (optional)",
+      colorHex: "Color swatch (hex, optional)",
+      addImage: "Add image",
+      removeImage: "Remove image",
+      specs: "Specifications",
+      specLabelEn: "Label (English)",
+      specLabelFa: "Label (Persian)",
+      specValueEn: "Value (English)",
+      specValueFa: "Value (Persian)",
+      addSpec: "Add specification",
+      removeSpec: "Remove",
+      save: "Save product",
+      saving: "Saving…",
+      cancel: "Cancel",
+    },
+  },
+  footer: {
+    tagline: "Premium tech, curated and verified.",
+    quickLinks: "Quick links",
+    company: "Company",
+    rights: "All rights reserved.",
+  },
+} as const;
+
+// `en` is declared `as const` so every key survives with its literal string
+// type. That's great for autocomplete, but it would force `fa` to contain
+// the exact same English words. Widen every leaf to `string` before using
+// the shape as `fa`'s type.
+type Widen<T> = T extends string
+  ? string
+  : T extends readonly (infer U)[]
+    ? readonly Widen<U>[]
+    : T extends object
+      ? { [K in keyof T]: Widen<T[K]> }
+      : T;
+
+export type Translations = Widen<typeof en>;
+
+const fa = {
+  meta: {
+    siteName: "جورنی",
+    tagline: "فناوری برتر، بررسی‌شده و تضمینی.",
+  },
+  nav: {
+    home: "خانه",
+    howItWorks: "روند خرید",
+    forBuyers: "برای خریداران",
+    categories: "دسته‌بندی‌ها",
+    about: "درباره ما",
+    pricing: "قیمت‌گذاری",
+    contact: "تماس با ما",
+    cart: "سبد خرید",
+    admin: "مدیریت",
+    login: "ورود",
+    logout: "خروج",
+    dashboard: "داشبورد",
+  },
+  common: {
+    addToBasket: "افزودن به سبد",
+    buyNow: "خرید سریع",
+    outOfStock: "ناموجود",
+    inStock: "موجود",
+    currency: "$",
+    save: "ذخیره",
+    cancel: "انصراف",
+    submit: "ارسال",
+    sending: "در حال ارسال…",
+    sent: "ارسال شد",
+    loading: "در حال بارگذاری…",
+    viewDetails: "مشاهده جزئیات",
+    learnMore: "بیشتر بدانید",
+    requiredField: "تکمیل این فیلد الزامی است",
+    invalidEmail: "یک ایمیل معتبر وارد کنید",
+    quantity: "تعداد",
+    remove: "حذف",
+    subtotal: "جمع جزء",
+    total: "جمع کل",
+    back: "بازگشت",
+    seeAll: "مشاهده همه",
+    comingSoon: "به‌زودی",
+    notifyMe: "اطلاع بده",
+    emailPlaceholder: "you@example.com",
+    close: "بستن",
+  },
+  home: {
+    hero: {
+      eyebrow: "بررسی‌شده. تضمینی. تحویل درب منزل.",
+      title: "بهترین فناوری‌های دنیا، بدون شک و تردید.",
+      subtitle:
+        "جورنی هر محصول را خودش انتخاب و بررسی می‌کند، قیمتی شفاف تعیین می‌کند و از لحظه خرید تا رسیدن به دستتان پاسخگوست.",
+      ctaPrimary: "خرید آیفون 17 پرو مکس",
+      ctaSecondary: "روند خرید را ببینید",
+    },
+    problem: {
+      title: "خرید فناوری برتر به‌صورت آنلاین یک قمار است",
+      subtitle: "بازارهای آنلاین پر از فروشندگانی است که هیچ‌وقت نامشان را نشنیده‌اید.",
+      points: [
+        {
+          title: "ریسک کالای تقلبی",
+          desc: "فروشندگان بازار موازی و آگهی‌های مشابه، تشخیص اینکه واقعاً چه چیزی به دستتان می‌رسد را سخت می‌کنند.",
+        },
+        {
+          title: "قیمت‌گذاری غیرشفاف",
+          desc: "هزینه‌های پنهان، عوارض گمرکی غافلگیرکننده و «تخفیف‌هایی» که در لحظه پرداخت با هم جور در نمی‌آیند.",
+        },
+        {
+          title: "بدون پاسخگویی",
+          desc: "وقتی مشکلی پیش می‌آید، فروشندگان واسط ناپدید می‌شوند و پشتیبانی بی‌پاسخ می‌ماند.",
+        },
+      ],
+    },
+    solution: {
+      title: "جورنی این مشکل را حل می‌کند",
+      subtitle: "یک فروشگاه، یک تیم، یک استاندارد.",
+      points: [
+        {
+          title: "هر محصول تأییدشده",
+          desc: "تیم ما شخصاً هر محصول را اضافه و بررسی می‌کند؛ هیچ کالایی از طریق واسط یا دراپ‌شیپینگ وارد نمی‌شود.",
+        },
+        {
+          title: "یک قیمت شفاف",
+          desc: "قیمتی که می‌بینید همان قیمت نهایی است. هیچ هزینه غافلگیرکننده‌ای در مرحله پایانی وجود ندارد.",
+        },
+        {
+          title: "پشتیبانی واقعی",
+          desc: "از تأیید سفارش تا تحویل درب منزل، یک تیم واقعی پاسخگوی شماست.",
+        },
+      ],
+    },
+    howItWorks: {
+      title: "از مرور محصول تا رسیدن درب منزل، تنها ۴ مرحله",
+      steps: [
+        { title: "مرور محصولات", desc: "محصولات تأییدشده را بر اساس دسته‌بندی مرور کنید." },
+        { title: "افزودن به سبد", desc: "پیکربندی و تعداد موردنظرتان را انتخاب کنید." },
+        { title: "پرداخت امن", desc: "اطلاعات ارسال را وارد کرده و سفارش را نهایی کنید." },
+        { title: "پیگیری و تحویل", desc: "ما بسته‌بندی و ارسال می‌کنیم و تا رسیدن سفارش پیگیر شما هستیم." },
+      ],
+    },
+    trust: {
+      title: "چرا خریداران به جورنی اعتماد می‌کنند",
+      items: [
+        { title: "تضمین اصالت کالا", desc: "هر دستگاه اصل است، وگرنه وجهتان بازمی‌گردد." },
+        { title: "حمایت از خریدار", desc: "پرداخت شما تنها پس از تأیید سفارش نهایی می‌شود." },
+        { title: "پرداخت امن", desc: "رمزنگاری در سطح بانکی برای تمام تراکنش‌ها." },
+        { title: "پشتیبانی انسانی", desc: "وقتی تماس می‌گیرید، یک انسان واقعی پاسخ می‌دهد." },
+      ],
+    },
+    stats: [
+      { value: "+۱۰٬۰۰۰", label: "سفارش تحویل‌داده‌شده" },
+      { value: "۴.۹ از ۵", label: "میانگین امتیاز" },
+      { value: "۴۸ ساعت", label: "میانگین زمان ارسال" },
+      { value: "۱۰۰٪", label: "تضمین اصالت کالا" },
+    ],
+    finalCta: {
+      title: "آماده ارتقا هستید؟",
+      subtitle: "آیفون 17 پرو مکس موجود است و آماده ارسال.",
+      cta: "همین حالا بخرید",
+    },
+  },
+  howItWorksPage: {
+    hero: {
+      eyebrow: "روند خرید",
+      title: "جورنی چگونه کار می‌کند",
+      subtitle: "بین مرور محصول و باز کردن بسته آن، ۹ مرحله وجود دارد. دقیقاً ببینید در هر مرحله چه اتفاقی می‌افتد.",
+    },
+    steps: [
+      { title: "کشف محصول", desc: "دسته‌بندی‌ها و محصولات ویژه‌ای که تیم ما انتخاب کرده را مرور کنید." },
+      { title: "مقایسه مشخصات", desc: "هر صفحه محصول مشخصات کامل را همراه با قیمت نمایش می‌دهد؛ بدون نیاز به جست‌وجو در فایل‌های راهنما." },
+      { title: "قیمت شفاف", desc: "قیمت نمایش‌داده‌شده همان قیمتی است که پرداخت می‌کنید. هزینه ارسال پیش از تأیید نهایی مشخص می‌شود." },
+      { title: "افزودن به سبد", desc: "پیکربندی (مانند رنگ) و تعداد را انتخاب کنید تا فوراً در سبد خرید ذخیره شود." },
+      { title: "پرداخت امن", desc: "اطلاعات ارسال را در صفحه‌ای رمزنگاری‌شده وارد کنید؛ بدون نیاز به ساخت حساب کاربری." },
+      { title: "تأیید سفارش", desc: "تیم ما موجودی را بررسی و سفارش را پیش از دریافت وجه تأیید می‌کند." },
+      { title: "تأیید پرداخت", desc: "پس از تأیید، پرداخت شما نهایی شده و سفارش قطعی می‌شود." },
+      { title: "ارسال و رهگیری", desc: "سفارش بسته‌بندی و ارسال می‌شود و بلافاصله لینک رهگیری دریافت می‌کنید." },
+      { title: "تحویل و پشتیبانی", desc: "محصول به دستتان می‌رسد و تیم پشتیبانی ما برای هر سؤالی در دسترس است." },
+    ],
+  },
+  forBuyers: {
+    hero: {
+      eyebrow: "برای خریداران",
+      title: "مناسب برای هر نوع خریدار",
+      subtitle: "چه یک گوشی بخرید و چه پنجاه عدد، جورنی متناسب با روش واقعی خرید شما طراحی شده است.",
+    },
+    segments: [
+      {
+        title: "خریداران شخصی",
+        desc: "خرید برای خودتان یا هدیه، بدون هیچ ابهامی.",
+        bullets: [
+          "قیمت‌گذاری شفاف و تمام‌شمول",
+          "پرداخت سریع، بدون نیاز به حساب کاربری",
+          "ارسال قابل‌رهگیری برای هر سفارش",
+        ],
+      },
+      {
+        title: "خریداران سازمانی و عمده",
+        desc: "تجهیز تیم شما بدون واسطه و افزایش قیمت.",
+        bullets: [
+          "سفارش‌دهی مناسب حجم بالا",
+          "تأیید اختصاصی سفارش",
+          "صدور فاکتور تجمیعی در صورت درخواست",
+        ],
+      },
+      {
+        title: "شرکای فروش",
+        desc: "تأمین قفسه‌های شما با کالای تأییدشده و اصل.",
+        bullets: [
+          "اولویت در تخصیص موجودی",
+          "ارتباط مستقیم با تیم تأیید اصالت",
+          "زمان تحویل قابل‌اتکا و تکرارپذیر",
+        ],
+      },
+    ],
+  },
+  categories: {
+    hero: {
+      title: "خرید بر اساس دسته‌بندی",
+      subtitle: "دسته‌بندی‌ها را با دقت اضافه می‌کنیم؛ هرکدام پیش از راه‌اندازی کاملاً تأیید می‌شود.",
+    },
+    liveLabel: "هم‌اکنون موجود",
+    comingSoonLabel: "به‌زودی",
+    notifyTitle: "می‌خواهید زمان راه‌اندازی را بدانید؟",
+    notifyDesc: "ایمیل خود را وارد کنید تا به‌محض فعال‌شدن این دسته‌بندی به شما اطلاع دهیم.",
+    notifySuccess: "شما در لیست قرار گرفتید؛ به‌زودی با شما در تماس خواهیم بود.",
+    items: [
+      { key: "smartphones", name: "گوشی‌های هوشمند", desc: "گوشی‌های پرچمدار، تأییدشده و موجود در انبار.", live: true },
+      { key: "laptops", name: "لپ‌تاپ", desc: "لپ‌تاپ‌های حرفه‌ای برای کار و پروژه‌های خلاقانه.", live: false },
+      { key: "audio", name: "صوتی", desc: "هدفون و اسپیکرهایی که ارزش هیاهویشان را دارند.", live: false },
+      { key: "wearables", name: "پوشیدنی‌ها", desc: "ساعت و بندهایی که همراه شما هستند.", live: false },
+      { key: "tablets", name: "تبلت", desc: "تبلت برای کار، تحصیل و هر چیزی بین این دو.", live: false },
+      { key: "accessories", name: "لوازم جانبی", desc: "قاب، شارژر و چیزهای کوچکی که اهمیت دارند.", live: false },
+    ],
+  },
+  about: {
+    hero: {
+      eyebrow: "چشم‌انداز ما",
+      title: "خرید فناوری برتر باید به‌خوبی استفاده از آن باشد",
+      subtitle: "جورنی به این دلیل شکل گرفت که این تجربه وجود نداشت.",
+    },
+    missionTitle: "مأموریت ما",
+    mission: [
+      "جورنی را ساختیم چون خرید فناوری برتر به‌صورت آنلاین به یک آزمون اعتماد تبدیل شده بود؛ آیا فروشنده واقعی است، آیا قیمت واقعی است، آیا اصلاً محصول می‌رسد یا نه.",
+      "به همین دلیل فروشگاهی ساختیم که از ابتدا تا انتها خودمان کنترلش می‌کنیم. هر محصول پیش از دیده‌شدن توسط اولین خریدار، توسط تیم خودمان اضافه، بررسی و قیمت‌گذاری می‌شود.",
+      "کار را با یک محصول و به بهترین شکل شروع کرده‌ایم: آیفون 17 پرو مکس. هر دسته‌بندی که بعداً اضافه کنیم، همین استاندارد را خواهد داشت.",
+    ],
+    values: [
+      { title: "اصالت", desc: "اگر خودمان آن را نمی‌خریدیم، در فروشگاه هم قرار نمی‌گیرد." },
+      { title: "شفافیت", desc: "یک قیمت، از ابتدا نمایش داده می‌شود و در لحظه پرداخت تغییر نمی‌کند." },
+      { title: "توجه", desc: "با هر سفارش طوری رفتار می‌کنیم که انگار برای یکی از آشنایانمان است." },
+    ],
+  },
+  pricing: {
+    hero: {
+      title: "قیمت‌گذاری و هزینه‌ها",
+      subtitle: "بدون کمیسیون، بدون افزایش قیمت پنهان. دقیقاً می‌بینید یک قیمت چگونه شکل می‌گیرد.",
+    },
+    sections: [
+      {
+        title: "قیمت‌گذاری خرده‌فروشی",
+        desc: "هر محصول را با قیمت واقعی خرده‌فروشی عرضه می‌کنیم؛ همان قیمتی که در فروشگاه رسمی پرداخت می‌کردید، اما تهیه‌شده مستقیم و بدون واسطه.",
+      },
+      {
+        title: "هزینه ارسال",
+        desc: "هزینه ارسال بر اساس مقصد شما در لحظه پرداخت محاسبه و پیش از تأیید سفارش نمایش داده می‌شود؛ نه بعد از آن.",
+      },
+      {
+        title: "حمایت از خریدار",
+        desc: "هر سفارش بدون هیچ هزینه اضافه‌ای شامل حمایت از خریدار است: پرداخت شما تنها پس از تأیید سفارش دریافت می‌شود.",
+      },
+    ],
+    faqTitle: "پرسش‌های متداول",
+    faq: [
+      {
+        q: "آیا هزینه پنهانی وجود دارد؟",
+        a: "خیر. قیمت درج‌شده در صفحه محصول، قیمت کامل پیش از هزینه ارسال است و هزینه ارسال همیشه پیش از تأیید سفارش نمایش داده می‌شود.",
+      },
+      {
+        q: "آیا حق عضویت یا کمیسیون دریافت می‌کنید؟",
+        a: "خیر. جورنی از خریداران کمیسیونی دریافت نمی‌کند؛ شما فقط قیمت محصول به‌علاوه هزینه ارسال را پرداخت می‌کنید.",
+      },
+      {
+        q: "چه روش‌های پرداختی پشتیبانی می‌شود؟",
+        a: "پرداخت از کارت‌های اصلی پشتیبانی می‌کند. تمام تراکنش‌ها رمزنگاری‌شده و مشمول حمایت از خریدار هستند.",
+      },
+    ],
+  },
+  contact: {
+    hero: {
+      title: "با ما در تماس باشید",
+      subtitle: "سؤال درباره سفارش، محصول یا همکاری به‌عنوان شریک فروش — ما هر پیامی را می‌خوانیم.",
+    },
+    form: {
+      name: "نام و نام خانوادگی",
+      email: "آدرس ایمیل",
+      phone: "شماره تماس (اختیاری)",
+      message: "پیام شما",
+      submit: "ارسال پیام",
+    },
+    success: "متشکریم؛ پیام شما ثبت شد. ظرف یک روز کاری پاسخ می‌دهیم.",
+    error: "ارسال پیام با خطا مواجه شد. لطفاً دوباره تلاش کنید.",
+  },
+  product: {
+    specsTitle: "مشخصات فنی",
+    chooseColor: "رنگ",
+    chooseStorage: "حافظه",
+    quantityLabel: "تعداد",
+    addToBasket: "افزودن به سبد",
+    addedToBasket: "به سبد اضافه شد",
+    buyNow: "خرید سریع",
+    shippingNote: "ارسال رایگان و قابل‌رهگیری، حداکثر ظرف ۴۸ ساعت.",
+    stockLeftPrefix: "تنها",
+    stockLeftSuffix: "عدد در انبار باقی مانده",
+    outOfStock: "در حال حاضر ناموجود است",
+    guarantee: "مشمول تضمین اصالت کالای جورنی",
+    relatedTitle: "مشخصات کامل",
+  },
+  cart: {
+    title: "سبد خرید شما",
+    empty: "سبد خرید شما خالی است.",
+    emptyCta: "ادامه خرید",
+    product: "محصول",
+    price: "قیمت",
+    quantity: "تعداد",
+    remove: "حذف",
+    subtotal: "جمع جزء",
+    proceedToCheckout: "ادامه فرایند خرید",
+    continueShopping: "ادامه خرید",
+  },
+  checkout: {
+    title: "تسویه‌حساب",
+    subtitle: "برای تکمیل سفارش، اطلاعات ارسال را وارد کنید.",
+    fields: {
+      name: "نام و نام خانوادگی",
+      email: "آدرس ایمیل",
+      address: "آدرس ارسال",
+      city: "شهر",
+      postalCode: "کد پستی",
+      country: "کشور",
+    },
+    placeOrder: "ثبت سفارش",
+    orderPlacedTitle: "سفارش شما تأیید شد",
+    orderPlacedDesc: "از خرید شما متشکریم! سفارش شما ثبت شد و تیم ما جزئیات رهگیری را برایتان ارسال خواهد کرد.",
+    backHome: "بازگشت به خانه",
+  },
+  admin: {
+    login: {
+      title: "ورود مدیر",
+      subtitle: "مدیریت فهرست محصولات جورنی.",
+      email: "ایمیل",
+      password: "رمز عبور",
+      submit: "ورود",
+      invalidCredentials: "ایمیل یا رمز عبور نادرست است.",
+    },
+    dashboard: {
+      title: "فهرست محصولات",
+      subtitle: "افزودن، ویرایش و حذف محصولات فروشگاه.",
+      addProduct: "افزودن محصول",
+      empty: "هنوز محصولی وجود ندارد. اولین محصول را اضافه کنید.",
+      edit: "ویرایش",
+      delete: "حذف",
+      deleteConfirm: "این محصول حذف شود؟ این عمل قابل بازگشت نیست.",
+      colStock: "موجودی",
+      colPrice: "قیمت",
+      colStatus: "وضعیت",
+      colActions: "عملیات",
+      featured: "ویژه",
+      hidden: "پنهان",
+    },
+    form: {
+      titleNew: "افزودن محصول",
+      titleEdit: "ویرایش محصول",
+      nameEn: "نام (انگلیسی)",
+      nameFa: "نام (فارسی)",
+      slug: "شناسه آدرس (slug)",
+      taglineEn: "شعار محصول (انگلیسی)",
+      taglineFa: "شعار محصول (فارسی)",
+      descriptionEn: "توضیحات (انگلیسی)",
+      descriptionFa: "توضیحات (فارسی)",
+      price: "قیمت (دلار)",
+      compareAtPrice: "قیمت قبل از تخفیف (اختیاری)",
+      category: "دسته‌بندی",
+      stock: "موجودی انبار",
+      featured: "نمایش در صفحه اصلی",
+      images: "تصاویر گالری",
+      imageUrl: "آدرس تصویر",
+      imageAlt: "متن جایگزین تصویر",
+      colorName: "نام رنگ (اختیاری)",
+      colorHex: "کد رنگ (اختیاری)",
+      addImage: "افزودن تصویر",
+      removeImage: "حذف تصویر",
+      specs: "مشخصات فنی",
+      specLabelEn: "عنوان (انگلیسی)",
+      specLabelFa: "عنوان (فارسی)",
+      specValueEn: "مقدار (انگلیسی)",
+      specValueFa: "مقدار (فارسی)",
+      addSpec: "افزودن مشخصه",
+      removeSpec: "حذف",
+      save: "ذخیره محصول",
+      saving: "در حال ذخیره…",
+      cancel: "انصراف",
+    },
+  },
+  footer: {
+    tagline: "فناوری برتر، بررسی‌شده و تضمینی.",
+    quickLinks: "لینک‌های سریع",
+    company: "شرکت",
+    rights: "تمامی حقوق محفوظ است.",
+  },
+} satisfies Translations;
+
+export const translations = { en, fa } as const;
+export type Locale = keyof typeof translations;

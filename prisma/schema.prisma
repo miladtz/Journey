@@ -1,0 +1,111 @@
+// Prisma schema for the Journey purchase website.
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  ADMIN
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role     @default(ADMIN)
+  createdAt    DateTime @default(now())
+}
+
+model Product {
+  id             String         @id @default(cuid())
+  slug           String         @unique
+  nameEn         String
+  nameFa         String
+  taglineEn      String
+  taglineFa      String
+  descriptionEn  String
+  descriptionFa  String
+  price          Float
+  compareAtPrice Float?
+  currency       String         @default("USD")
+  category       String         @default("smartphones")
+  stock          Int            @default(25)
+  featured       Boolean        @default(true)
+  images         ProductImage[]
+  specs          ProductSpec[]
+  cartItems      CartItem[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+}
+
+// Doubles as gallery photo + color swatch: entries with a colorName are
+// selectable in the product page's color picker and swap the main image.
+model ProductImage {
+  id        String   @id @default(cuid())
+  url       String
+  alt       String   @default("")
+  colorName String?
+  colorHex  String?
+  order     Int      @default(0)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductSpec {
+  id        String  @id @default(cuid())
+  labelEn   String
+  labelFa   String
+  valueEn   String
+  valueFa   String
+  order     Int     @default(0)
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  sessionId String     @unique
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int      @default(1)
+  // Empty string means "no color selected" — kept non-null so it works
+  // inside the compound unique index below (SQL unique indexes treat every
+  // NULL as distinct, which would defeat de-duplication here).
+  color     String   @default("")
+  createdAt DateTime @default(now())
+
+  @@unique([cartId, productId, color])
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  source    String   @default("contact")
+  createdAt DateTime @default(now())
+}
+
+model CategoryInterest {
+  id        String   @id @default(cuid())
+  category  String
+  email     String
+  createdAt DateTime @default(now())
+}
