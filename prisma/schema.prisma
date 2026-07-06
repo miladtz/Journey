@@ -10,8 +10,12 @@ datasource db {
   provider = "sqlite"
 }
 
+// Only ever set on User rows below; kept as an enum (rather than a plain
+// string) so it doubles as the NextAuth session's role type. Client rows
+// don't store a role column — being in the Client table implies "CLIENT".
 enum Role {
   ADMIN
+  CLIENT
 }
 
 model User {
@@ -21,6 +25,53 @@ model User {
   name         String
   role         Role     @default(ADMIN)
   createdAt    DateTime @default(now())
+}
+
+model Client {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  phone        String   @unique
+  address      String   @default("")
+  city         String   @default("")
+  postalCode   String   @default("")
+  country      String   @default("")
+  orders       Order[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Order {
+  id         String      @id @default(cuid())
+  clientId   String
+  client     Client      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  subtotal   Float
+  currency   String      @default("USD")
+  address    String
+  city       String
+  postalCode String
+  country    String
+  items      OrderItem[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+// Snapshots product name/price/color at order time so a later product edit
+// or deletion never rewrites history; productId is kept only as a soft link
+// back to the still-existing product, if any.
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String?
+  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  nameEn    String
+  nameFa    String
+  price     Float
+  quantity  Int
+  color     String   @default("")
 }
 
 model Product {
@@ -41,6 +92,7 @@ model Product {
   images         ProductImage[]
   specs          ProductSpec[]
   cartItems      CartItem[]
+  orderItems     OrderItem[]
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
 }

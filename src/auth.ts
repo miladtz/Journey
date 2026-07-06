@@ -20,12 +20,24 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }
 
         const user = await prisma.user.findUnique({ where: { email } });
-        if (!user) return null;
+        if (user) {
+          const valid = await bcrypt.compare(password, user.passwordHash);
+          if (!valid) return null;
+          return { id: user.id, email: user.email, name: user.name, role: user.role };
+        }
 
-        const valid = await bcrypt.compare(password, user.passwordHash);
+        const client = await prisma.client.findUnique({ where: { email } });
+        if (!client) return null;
+
+        const valid = await bcrypt.compare(password, client.passwordHash);
         if (!valid) return null;
 
-        return { id: user.id, email: user.email, name: user.name, role: user.role };
+        return {
+          id: client.id,
+          email: client.email,
+          name: `${client.firstName} ${client.lastName}`,
+          role: "CLIENT",
+        };
       },
     }),
   ],

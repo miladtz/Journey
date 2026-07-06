@@ -4,6 +4,7 @@ import "./globals.css";
 import { LanguageProvider, LANGUAGE_COOKIE_NAME } from "@/context/LanguageContext";
 import { CartProvider } from "@/context/CartContext";
 import type { Locale } from "@/lib/translations";
+import { auth } from "@/auth";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
@@ -21,6 +22,8 @@ export default async function RootLayout({
   const cookieStore = await cookies();
   const initialLocale: Locale = cookieStore.get(LANGUAGE_COOKIE_NAME)?.value === "en" ? "en" : "fa";
   const dir = initialLocale === "fa" ? "rtl" : "ltr";
+  const session = await auth();
+  const clientUser = session?.user.role === "CLIENT" ? { name: session.user.name ?? "" } : null;
 
   return (
     <html
@@ -32,7 +35,7 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <LanguageProvider initialLocale={initialLocale}>
           <CartProvider>
-            <Header />
+            <Header clientUser={clientUser} />
             <main className="flex-1">{children}</main>
             <Footer />
           </CartProvider>

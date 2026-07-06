@@ -18,3 +18,21 @@ export async function requireAdminApi() {
   }
   return session;
 }
+
+/** Call at the top of a client-facing Server Component; redirects guests to sign in. */
+export async function requireClientPage(callbackUrl?: string) {
+  const session = await auth();
+  if (!session || session.user.role !== "CLIENT") {
+    redirect(callbackUrl ? `/login?callbackUrl=${encodeURIComponent(callbackUrl)}` : "/login");
+  }
+  return session;
+}
+
+/** Call at the top of a client-facing API route; returns null when unauthorized. */
+export async function requireClientApi() {
+  const session = await auth();
+  if (!session || session.user.role !== "CLIENT") {
+    return null;
+  }
+  return session;
+}

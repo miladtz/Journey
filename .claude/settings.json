@@ -36,7 +36,35 @@
       "Bash(/home/m_tavakolizadeh/anaconda3/bin/curl -sS -c /tmp/admin_final.txt -b /tmp/admin_final.txt -o /tmp/delcat.json -w 'HTTP %{http_code}\\\\n' -X DELETE http://localhost:3000/api/admin/categories/__TRACKED_VAR__ --max-time 20)",
       "Bash(/home/m_tavakolizadeh/anaconda3/bin/curl -sS -c /tmp/admin_final.txt -b /tmp/admin_final.txt -o /tmp/blocked.json -w 'HTTP %{http_code}\\\\n' -X DELETE http://localhost:3000/api/admin/categories/cmr98evjh0000wrjk4m2oiwvw --max-time 20)",
       "Bash(/home/m_tavakolizadeh/anaconda3/bin/curl -sS http://localhost:3000/ -o /tmp/home3.html --max-time 20)",
-      "Bash(/home/m_tavakolizadeh/anaconda3/bin/curl -sS http://localhost:3000/products/iphone-17-pro-max -o /tmp/pdp.html --max-time 20)"
+      "Bash(/home/m_tavakolizadeh/anaconda3/bin/curl -sS http://localhost:3000/products/iphone-17-pro-max -o /tmp/pdp.html --max-time 20)",
+      "Bash(mkdir -p src/app/admin/clients/\\\\[id\\\\])",
+      "Bash(pip show *)",
+      "Bash(find / -iname \"chromium-cli*\" -maxdepth 4)",
+      "Bash(node -e \"require\\('playwright'\\)\" 2>&1; ls ~/.cache/ms-playwright 2>&1 | head)",
+      "Read(//home/m_tavakolizadeh/.cache/ms-playwright/**)",
+      "Bash(ls ~/.cache/ms-playwright 2>&1)",
+      "Bash(ls -la ~/.cache/ms-playwright 2>&1; echo \"---\"; NPX_PW=/home/m_tavakolizadeh/.npm/_npx/e41f203b7505f1fb; node -e \"const {chromium}=require\\('$NPX_PW/node_modules/playwright'\\); console.log\\(typeof chromium\\)\")",
+      "Bash(timeout 30 bash -c 'until curl -sf http://localhost:3000 >/dev/null; do sleep 1; done')",
+      "Bash(find ~/.cache/ms-playwright -maxdepth 2 -type d)",
+      "Bash(ldd /home/m_tavakolizadeh/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome)",
+      "Bash(sudo -n apt-get update)",
+      "Bash(ps -p 400553 -o pid,lstart,cmd)",
+      "Bash(ps -o pid,ppid,lstart,cmd -p 400518,400519,400553)",
+      "Bash(kill 400553 400519 400518)",
+      "Bash(sqlite3 dev.db \"SELECT slug FROM Product LIMIT 1;\")",
+      "Bash(sqlite3 dev.db 'SELECT id FROM Product WHERE slug='\\\\''__TRACKED_VAR__'\\\\'';')",
+      "Bash(sqlite3 dev.db \"SELECT id, slug FROM Product LIMIT 1;\")",
+      "Bash(sqlite3 dev.db \"SELECT o.id, o.clientId, o.subtotal, o.currency, o.address, o.city FROM \\\\\"Order\\\\\" o;\")",
+      "Bash(sqlite3 dev.db \"SELECT id, orderId, nameEn, price, quantity FROM OrderItem;\")",
+      "Bash(sqlite3 dev.db \"SELECT id FROM Client WHERE lastName='Ahmadi';\")",
+      "Bash(sqlite3 /mnt/e/AI/Journey/dev.db \"SELECT id FROM Client WHERE lastName='Ahmadi';\")",
+      "Bash(grep -o \"ورود$\\\\|Sign in\")",
+      "Bash(disown)",
+      "Bash(echo \"launched pid $!\")",
+      "Bash(ps -p 420426 -o pid,cmd)"
+    ],
+    "additionalDirectories": [
+      "/mnt/e/AI/Journey/src/app/admin/clients"
     ]
   }
 }

@@ -12,6 +12,7 @@ export function AdminNav() {
   const pathname = usePathname();
   const isProducts = pathname === "/admin" || pathname.startsWith("/admin/products");
   const isCategories = pathname.startsWith("/admin/categories");
+  const isClients = pathname.startsWith("/admin/clients");
 
   return (
     <div className="border-b border-border">
@@ -34,6 +35,15 @@ export function AdminNav() {
             )}
           >
             {t.admin.nav.categories}
+          </Link>
+          <Link
+            href="/admin/clients"
+            className={clsx(
+              "-mb-px border-b-2 py-4 text-sm font-medium",
+              isClients ? "border-accent text-accent" : "border-transparent text-muted hover:text-foreground"
+            )}
+          >
+            {t.admin.nav.clients}
           </Link>
         </nav>
         <button

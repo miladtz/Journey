@@ -1,4 +1,4 @@
-import type { Product, ProductImage, ProductSpec } from "@/generated/prisma/client";
+import type { Product, ProductImage, ProductSpec, Prisma } from "@/generated/prisma/client";
 
 export type ProductWithRelations = Product & {
   images: ProductImage[];
@@ -24,3 +24,11 @@ export type CartView = {
   items: CartItemView[];
   subtotal: number;
 };
+
+export type ClientWithOrderCount = Prisma.ClientGetPayload<{
+  include: { _count: { select: { orders: true } } };
+}>;
+
+export type ClientWithOrders = Prisma.ClientGetPayload<{
+  include: { orders: { include: { items: true } } };
+}>;

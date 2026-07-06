@@ -49,3 +49,26 @@ export const categoryInputSchema = z.object({
 });
 
 export type CategoryInput = z.infer<typeof categoryInputSchema>;
+
+export const clientRegisterSchema = z.object({
+  firstName: z.string().min(1),
+  lastName: z.string().min(1),
+  email: z.string().email(),
+  phone: z.string().min(1),
+  password: z.string().min(8),
+  address: z.string().default(""),
+  city: z.string().default(""),
+  postalCode: z.string().default(""),
+  country: z.string().default(""),
+});
+
+export type ClientRegisterInput = z.infer<typeof clientRegisterSchema>;
+
+export const orderShippingSchema = z.object({
+  address: z.string().min(1),
+  city: z.string().min(1),
+  postalCode: z.string().min(1),
+  country: z.string().min(1),
+});
+
+export type OrderShippingInput = z.infer<typeof orderShippingSchema>;

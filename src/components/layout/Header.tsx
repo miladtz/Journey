@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Globe, Menu, ShoppingBag, X } from "lucide-react";
+import { signOut } from "next-auth/react";
+import { Globe, LogOut, Menu, ShoppingBag, User, X } from "lucide-react";
 import { clsx } from "clsx";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
 
-export function Header() {
+export function Header({ clientUser }: { clientUser: { name: string } | null }) {
   const { t, locale, setLocale } = useLanguage();
   const { itemCount } = useCart();
   const pathname = usePathname();
@@ -63,6 +64,38 @@ export function Header() {
             {locale === "en" ? "فارسی" : "EN"}
           </button>
 
+          {clientUser ? (
+            <div className="hidden items-center gap-1 sm:flex">
+              <span className="flex items-center gap-1.5 px-2 text-sm font-medium text-foreground">
+                <User className="h-4 w-4" />
+                {clientUser.name}
+              </span>
+              <button
+                type="button"
+                onClick={() => signOut({ callbackUrl: "/" })}
+                className="flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
+              >
+                <LogOut className="h-4 w-4" />
+                {t.nav.logout}
+              </button>
+            </div>
+          ) : (
+            <div className="hidden items-center gap-1 sm:flex">
+              <Link
+                href="/login"
+                className="rounded-full px-3.5 py-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
+              >
+                {t.nav.login}
+              </Link>
+              <Link
+                href="/register"
+                className="rounded-full px-3.5 py-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
+              >
+                {t.nav.register}
+              </Link>
+            </div>
+          )}
+
           <Link
             href="/cart"
             className="relative flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-foreground/5"
@@ -111,6 +144,34 @@ export function Header() {
               <Globe className="h-4 w-4" />
               {locale === "en" ? "فارسی" : "English"}
             </button>
+
+            {clientUser ? (
+              <button
+                type="button"
+                onClick={() => signOut({ callbackUrl: "/" })}
+                className="flex items-center gap-1.5 rounded-lg px-3 py-2.5 text-start text-sm font-medium text-muted hover:bg-foreground/5 hover:text-foreground sm:hidden"
+              >
+                <LogOut className="h-4 w-4" />
+                {t.nav.logout}
+              </button>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted hover:bg-foreground/5 hover:text-foreground sm:hidden"
+                >
+                  {t.nav.login}
+                </Link>
+                <Link
+                  href="/register"
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted hover:bg-foreground/5 hover:text-foreground sm:hidden"
+                >
+                  {t.nav.register}
+                </Link>
+              </>
+            )}
           </nav>
         </div>
       ) : null}
